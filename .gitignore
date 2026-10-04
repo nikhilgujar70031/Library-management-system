@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.flaskenv
+library.db
+library.db-journal
+library.db-shm
+library.db-wal

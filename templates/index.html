@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h2>📚 Library Management System</h2>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/add">Add Book</a>
+        <a href="/books">View Books</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Smart Library Dashboard</span>
+            <h1>Organize books with confidence.</h1>
+            <p>
+                Manage your library in one place with quick updates, live inventory tracking,
+                and an easy-to-use workflow for adding, issuing, returning, and searching books.
+            </p>
+
+            <div class="hero-actions">
+                <a class="button primary" href="/add">Add a Book</a>
+                <a class="button secondary" href="/books">Browse Collection</a>
+            </div>
+
+            <ul class="hero-points">
+                <li>Inventory tracking</li>
+                <li>Fast searches</li>
+                <li>Quick issue/return</li>
+            </ul>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-card">
+                <h3>Library Overview</h3>
+                <div class="visual-number">{{ total_books }}</div>
+                <div class="visual-row">
+                    <span>Total Books</span>
+                    <span>{{ available_books }} Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards">
+        <div class="card">
+            <div class="card-header">
+                <h3>Total Books</h3>
+                <div class="card-icon">📖</div>
+            </div>
+            <p>{{ total_books }}</p>
+            <small>Books currently in your collection</small>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Available</h3>
+                <div class="card-icon">✅</div>
+            </div>
+            <p>{{ available_books }}</p>
+            <small>Books ready to issue</small>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Actions</h3>
+                <div class="card-icon">⚡</div>
+            </div>
+            <p>3</p>
+            <small>Quick actions available</small>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon">📝</div>
+            <h3>Add Books</h3>
+            <p>Add new titles to your library collection with just a few details.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔍</div>
+            <h3>Search Efficiently</h3>
+            <p>Find books quickly by title or author without digging through records.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📦</div>
+            <h3>Track Availability</h3>
+            <p>Monitor stock levels and instantly see when a book is unavailable.</p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

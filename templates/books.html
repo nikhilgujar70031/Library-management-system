@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h2>📚 Library Management System</h2>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/add">Add Book</a>
+        <a href="/books">View Books</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>All Books</h1>
+
+    <form class="search-form" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search book or author..."
+            value="{{ search }}"
+        >
+
+        <button type="submit">Search</button>
+
+    </form>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for book in books %}
+
+            <tr>
+
+                <td>{{ book["id"] }}</td>
+
+                <td>{{ book["name"] }}</td>
+
+                <td>{{ book["author"] }}</td>
+
+                <td>{{ book["quantity"] }}</td>
+
+                <td>
+
+                    {% if book["quantity"] > 0 %}
+                    <a class="action issue"
+                       href="/issue/{{ book['id'] }}">
+                        Issue
+                    </a>
+                    {% else %}
+                    <span class="unavailable">Unavailable</span>
+                    {% endif %}
+
+                    <a class="action return"
+                       href="/return/{{ book['id'] }}">
+                        Return
+                    </a>
+
+                    <a class="action delete"
+                       href="/delete/{{ book['id'] }}">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+                <td colspan="5">
+                    No books found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
