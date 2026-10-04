@@ -6,7 +6,10 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
 
-DATABASE = "library.db"
+DATABASE = os.environ.get(
+    "DATABASE_PATH",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "library.db")
+)
 
 
 def get_db():
@@ -29,6 +32,9 @@ def create_database():
 
     conn.commit()
     conn.close()
+
+
+create_database()
 
 
 @app.route("/")
@@ -182,5 +188,4 @@ def delete_book(book_id):
 
 
 if __name__ == "__main__":
-    create_database()
     app.run(debug=True)
