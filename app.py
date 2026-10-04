@@ -2,13 +2,19 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import os
 import secrets
 import sqlite3
+import tempfile
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
 
+default_database_directory = (
+    tempfile.gettempdir()
+    if os.environ.get("VERCEL")
+    else os.path.dirname(os.path.abspath(__file__))
+)
 DATABASE = os.environ.get(
     "DATABASE_PATH",
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "library.db")
+    os.path.join(default_database_directory, "library.db")
 )
 
 
